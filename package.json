@@ -29,8 +29,5 @@
   "files": [
     "src",
     "dist"
-  ],
-  "dependencies": {
-    "@storybook/addon-events": "^6.1.21"
-  }
+  ]
 }
