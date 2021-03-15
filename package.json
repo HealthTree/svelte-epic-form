@@ -24,7 +24,7 @@
     "svelte-loader": "^3.0.0"
   },
   "keywords": [
-    "svelte"
+    "svelte", "form", "validation", "reactive", "input"
   ],
   "files": [
     "src",
