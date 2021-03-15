@@ -1,6 +1,11 @@
 {
   "version": "0.0.1",
-  "name": "@healhtree/svelte-epic-form",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HealthTree/svelte-epic-form"
+  },
+  "license": "MIT",
+  "name": "@healthtree/svelte-epic-form",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
