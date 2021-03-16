@@ -1,13 +1,6 @@
-import Form from "./Form/Form.svelte"
-import Input from "./Input/Input.svelte"
-import WriteForm from "./built-in-layouts/WriteForm/WriteForm.svelte"
-import ReadForm from "./built-in-layouts/ReadForm/ReadForm.svelte"
-import * as EpicFormService from "./EpicFormService"
-
-export {
-    Form,
-    Input,
-    WriteForm,
-    ReadForm,
-    EpicFormService
-}
+export {default as Form} from "./Form/Form.svelte"
+export {default as Input} from "./Input/Input.svelte"
+export {default as WriteForm} from "./built-in-layouts/WriteForm/WriteForm.svelte"
+export {default as ReadForm} from "./built-in-layouts/ReadForm/ReadForm.svelte"
+export {default as ErrorMessage} from "./ErrorMessage/ErrorMessage.svelte"
+export * as EpicFormService from "./EpicFormService"
