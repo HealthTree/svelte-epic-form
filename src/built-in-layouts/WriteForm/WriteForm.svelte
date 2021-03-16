@@ -13,6 +13,7 @@
     export let containerClass = '';
     export let headerClass = '';
     export let listClass = '';
+    export let inputContainerClass = '';
     export let descriptionClass = '';
 
     //Buttons
@@ -57,7 +58,7 @@
         {/if}
         <div class={listClass}>
             {#each form.inputs as input (input.name)}
-                <Input name={input.name}/>
+                <Input name={input.name} containerClass={inputContainerClass}/>
             {/each}
         </div>
         <div class={buttonsContainerClass}>
