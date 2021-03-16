@@ -2,10 +2,7 @@
     import ErrorMessage from "../../ErrorMessage/ErrorMessage.svelte";
     export let input;
     export let value;
-    export let error;
-    export let isDirty;
-
-    $:showError = isDirty && error;
+    export let showError;
 </script>
 
 <style>

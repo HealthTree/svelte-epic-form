@@ -26,6 +26,7 @@
             $dirty[name] = true;
         }
     }
+    $:showError = $dirty[name] && $errors[name];
 </script>
 
 {#if shouldDisplay}
@@ -34,6 +35,7 @@
                           {input}
                           error={$errors[name]}
                           isDirty={$dirty[name]}
+                          {showError}
                           bind:value={$values[name]}
         />
     </section>
