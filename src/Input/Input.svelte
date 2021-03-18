@@ -1,5 +1,5 @@
 <script>
-    import {getContext, setContext} from "svelte";
+    import {getContext, onMount, setContext} from 'svelte';
     import {shouldDisplayInput, typesMap} from "../EpicFormService";
 
     export let name;
@@ -18,11 +18,16 @@
         throw new Error('No input with name: ' + name)
     }
 
-    let initialValue = $values[name];
+    let initialValue, ready = false;
+
+    onMount(() => {
+        initialValue= $values[name];
+        ready = true;
+    })
 
     $:shouldDisplay = shouldDisplayInput(form.inputs, input, $values, mode);
     $: {
-        if (initialValue !== $values[name]) {
+        if (ready && (initialValue !== $values[name])) {
             $dirty[name] = true;
         }
     }
