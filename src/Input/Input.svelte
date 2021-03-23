@@ -4,7 +4,6 @@
 
     export let name;
     export let mode = 'write';
-    export let containerClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || '';
 
     setContext('name', name);
 
@@ -14,6 +13,8 @@
     let dirty = getContext('dirty');
 
     let input = form.inputs.find(input => input.name === name);
+    export let containerClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || '';
+
     if(!input) {
         throw new Error('No input with name: ' + name)
     }
