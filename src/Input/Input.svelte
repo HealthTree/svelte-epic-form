@@ -4,7 +4,7 @@
 
     export let name;
     export let mode = 'write';
-    export let containerClass = '';
+    export let containerClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || '';
 
     setContext('name', name);
 
@@ -35,7 +35,7 @@
 </script>
 
 {#if shouldDisplay}
-    <section class="e-input-container e-input-type-{input.type} {containerClass || input.containerClass}">
+    <section class="e-input-container e-input-type-{input.type} {containerClass}">
         <svelte:component this={typesMap[input.type][mode]}
                           {input}
                           error={$errors[name]}

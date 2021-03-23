@@ -58,7 +58,7 @@ export function getInputValidationError(inputs, input, values) {
     if (value && input.validations) {
         for (let validation of input.validations) {
             try {
-                if (validation.type === 'regexp') { //Default type
+                if (validation.type === 'regexp' || validation.type === undefined) { //Default type
                     const regexp = new RegExp(validation.rule);
                     if (!regexp.test(value)) {
                         return validation.message;
