@@ -11,6 +11,6 @@
 
 <label>
     {input.label}
+    <input type="text" name={input.name} placeholder={input.placeholder} bind:value/>
 </label>
-<input type="text" name={input.name} placeholder={input.placeholder} bind:value/>
 <ErrorMessage/>
