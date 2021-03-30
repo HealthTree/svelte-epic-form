@@ -102,3 +102,13 @@ export function getFormValidationErrors(form, values) {
     });
     return errors;
 }
+
+export default {
+    typesMap,
+    registerType,
+    getNumberOfErrors,
+    shouldDisplayInput,
+    getInputValidationError,
+    evaluateExpressionAgainstValues,
+    getFormValidationErrors
+}
