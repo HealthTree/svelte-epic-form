@@ -13,7 +13,7 @@
     export let containerClass = '';
     export let headerClass = '';
     export let listClass = '';
-    export let inputContainerClass = '';
+    export let inputContainerClass;
     export let descriptionClass = '';
 
     //Buttons
