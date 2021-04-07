@@ -18,7 +18,7 @@
     let hasErrors;
 
     $: {
-        $errors = getFormValidationErrors(form, $values);
+        $errors = getFormValidationErrors($form, $values);
         hasErrors = getNumberOfErrors($errors) > 0;
     }
 </script>

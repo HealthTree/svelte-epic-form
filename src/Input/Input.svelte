@@ -4,7 +4,7 @@
 
     export let name;
     export let mode = 'write';
-
+    export let containerClass;
     setContext('name', name);
 
     let form = getContext('form');
@@ -12,21 +12,19 @@
     let errors = getContext('errors');
     let dirty = getContext('dirty');
 
-    let input = form.inputs.find(input => input.name === name);
-    export let containerClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || '';
-
-    if(!input) {
-        throw new Error('No input with name: ' + name)
-    }
-
+    let input;
+    let inputClass;
     let initialValue, ready = false;
 
     onMount(() => {
         initialValue= $values[name];
         ready = true;
     })
-
-    $:shouldDisplay = shouldDisplayInput(form.inputs, input, $values, mode);
+    $: {
+        input = $form.inputs.find(input => input.name === name);
+        inputClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || ''
+    }
+    $:shouldDisplay = shouldDisplayInput($form.inputs, input, $values, mode);
     $: {
         if (ready && (initialValue !== $values[name])) {
             $dirty[name] = true;
@@ -36,7 +34,7 @@
 </script>
 
 {#if shouldDisplay}
-    <section class="e-input-container e-input-type-{input.type} {containerClass}">
+    <section class="e-input-container e-input-type-{input.type} {containerClass || inputClass}">
         <svelte:component this={typesMap[input.type][mode]}
                           {input}
                           error={$errors[name]}

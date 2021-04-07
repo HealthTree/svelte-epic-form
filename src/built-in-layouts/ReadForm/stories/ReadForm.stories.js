@@ -3,7 +3,7 @@ import {writable} from "svelte/store";
 
 export default {title: 'ReadForm'}
 
-const form = {
+const form = writable({
     header: 'Test form header',
     description: 'test description',
     inputs: [
@@ -22,7 +22,7 @@ const form = {
             displayCondition: 'x'
         },
     ]
-}
+})
 
 export const Default = () => ({
     Component: ReadForm,

@@ -2,8 +2,9 @@
     import Form from "../Form.svelte";
     import Input from "../../Input/Input.svelte";
     import "../../built-in-types/TextType/TextType";
+    import {writable} from 'svelte/store';
 
-    const form = {
+    const form = writable({
         inputs: [
             {
                 type: 'text',
@@ -39,7 +40,7 @@
                 ]
             },
         ]
-    }
+    })
 </script>
 
 <div>

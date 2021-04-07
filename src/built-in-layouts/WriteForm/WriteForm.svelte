@@ -44,20 +44,25 @@
             form
         });
     }
+
+    form.subscribe(v => {
+        console.log('change', v)
+    })
 </script>
 
 <section class={containerClass}>
+    {$form.header}
     <Form {form} let:hasErrors bind:values bind:errors bind:dirty>
         <h1 class={headerClass}>
-            {form.header}
+            {$form.header}
         </h1>
-        {#if form.description}
+        {#if $form.description}
             <p class={descriptionClass}>
-                {form.description}
+                {$form.description}
             </p>
         {/if}
         <div class={listClass}>
-            {#each form.inputs as input (input.name)}
+            {#each $form.inputs as input (input.name)}
                 <Input name={input.name} containerClass={inputContainerClass}/>
             {/each}
         </div>
