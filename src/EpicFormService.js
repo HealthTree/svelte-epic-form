@@ -55,7 +55,7 @@ export function getInputValidationError(inputs, input, values) {
         return "Required.";
     }
     const value = values[input.name];
-    if (value && input.validations) {
+    if (input.validations) {
         for (let validation of input.validations) {
             try {
                 if (validation.type === 'regexp' || validation.type === undefined) { //Default type
