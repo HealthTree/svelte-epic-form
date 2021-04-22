@@ -44,10 +44,6 @@
             form
         });
     }
-
-    form.subscribe(v => {
-        console.log('change', v)
-    })
 </script>
 
 <section class={containerClass}>
