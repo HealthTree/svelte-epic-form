@@ -51,9 +51,6 @@ export function getInputValidationError(inputs, input, values) {
     if (!shouldDisplayInput(inputs, input, values)) {
         return undefined;
     }
-    if (input.required && isInputValueInvalid(input, values)) {
-        return "Required.";
-    }
     const value = values[input.name];
     if (input.validations) {
         for (let validation of input.validations) {
@@ -81,7 +78,9 @@ export function getInputValidationError(inputs, input, values) {
             }
         }
     }
-}
+    if (input.required && isInputValueInvalid(input, values)) {
+        return "Required.";
+    }}
 
 export function evaluateExpressionAgainstValues(values, expression) {
     return new Function(
