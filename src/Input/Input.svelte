@@ -20,6 +20,12 @@
         initialValue= get($values, name);
         ready = true;
     })
+    function updateValues(val) {
+        values.update(old => set(old, name, val))
+    }
+    $:{
+        updateValues(value)
+    }
     $: {
         input = $form.inputs.find(input => input.name === name);
         inputClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || ''
@@ -31,12 +37,6 @@
         }
     }
     $:showError = $dirty[name] && $errors[name];
-    $:{
-       updateValues(value)
-    }
-    function updateValues(val) {
-        values.update(old => set(old, name, val))
-    }
 </script>
 
 {#if shouldDisplay}
