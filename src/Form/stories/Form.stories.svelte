@@ -3,20 +3,21 @@
     import Input from "../../Input/Input.svelte";
     import "../../built-in-types/TextType/TextType";
     import {writable} from 'svelte/store';
+    import { Meta, Story } from '@storybook/addon-svelte-csf';
 
     const form = writable({
         inputs: [
             {
                 type: 'text',
-                name: 'x',
+                name: 'object1.state',
                 label: 'How are you?',
                 placeholder: 'type your answer please',
                 required: true,
                 validations: [
                     {
                         type: "regexp",
-                        rule: '^.{6,50}$',
-                        message: "It should be between 6 and 50 chars."
+                        rule: '^.{6,10}$',
+                        message: "It should be between 6 and 10 chars."
                     },
                 ]
             },
@@ -25,27 +26,31 @@
                 name: 'y',
                 label: 'Why do you feel that way?',
                 placeholder: 'type your answer please',
-                displayCondition: 'x',
+                displayCondition: `object1.state`,
                 validations: [
                     {
                         type: "js",
-                        rule: values => values.x!==values.y,
-                        message: "X & Y should be different!"
+                        rule: values => values.object1.state !==values.y,
+                        message: "object1.state & Y should be different!"
                     },
                     {
                         type: "expression",
-                        rule: 'x.length > y.length',
-                        message: "x.length should be > than y.length"
+                        rule: 'object1.state.length > y.length',
+                        message: "object1.state.length should be > than y.length"
                     },
                 ]
             },
         ]
     })
 </script>
+<Meta title="Form" />
+<Story name="Default">
+    <div>
+        <Form {form} let:hasErrors>
+            <Input name="object1.state"/>
+            <Input name="y"/>
+            <button disabled={hasErrors}>Save</button>
+        </Form>
+    </div>
+</Story>
 
-<div>
-    <Form {form}>
-        <Input name="x"/>
-        <Input name="y"/>
-    </Form>
-</div>
