@@ -1,3 +1,5 @@
+import {get} from 'lodash-es';
+
 export let typesMap = {};
 export function registerType(typeDefinition) {
     typesMap[typeDefinition.type] = typeDefinition;
@@ -8,7 +10,7 @@ export function getNumberOfErrors(errors) {
 }
 
 const isInputValueInvalid = function (input, values) {
-    const value = values[input.name];
+    const value = get(values, input.name);
     if(typeof typesMap[input.type].isValid === 'function') {
         return !typesMap[input.type].isValid(value);
     } else {
@@ -51,7 +53,7 @@ export function getInputValidationError(inputs, input, values) {
     if (!shouldDisplayInput(inputs, input, values)) {
         return undefined;
     }
-    const value = values[input.name];
+    const value = get(values, input.name);
     if (input.validations) {
         for (let validation of input.validations) {
             try {

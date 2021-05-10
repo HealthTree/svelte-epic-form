@@ -1,7 +1,7 @@
 <script>
     import {getContext, onMount, setContext} from 'svelte';
     import {shouldDisplayInput, typesMap} from "../EpicFormService";
-
+    import {get, set} from 'lodash-es';
     export let name;
     export let mode = 'write';
     export let containerClass;
@@ -15,18 +15,24 @@
     let input;
     let inputClass;
     let initialValue, ready = false;
-
+    let value = get($values, name);
     onMount(() => {
-        initialValue= $values[name];
+        initialValue= get($values, name);
         ready = true;
     })
+    function updateValues(val) {
+        values.update(old => set(old, name, val))
+    }
+    $:{
+        updateValues(value)
+    }
     $: {
         input = $form.inputs.find(input => input.name === name);
         inputClass = (input.layout && input.layout[mode] && input.layout[mode].containerClass) || ''
     }
     $:shouldDisplay = shouldDisplayInput($form.inputs, input, $values, mode);
     $: {
-        if (ready && (initialValue !== $values[name])) {
+        if (ready && (initialValue !== get($values, name))) {
             $dirty[name] = true;
         }
     }
@@ -40,7 +46,7 @@
                           error={$errors[name]}
                           isDirty={$dirty[name]}
                           {showError}
-                          bind:value={$values[name]}
+                          bind:value
         />
     </section>
 {/if}
