@@ -15,16 +15,28 @@
     let input;
     let inputClass;
     let initialValue, ready = false;
-    let value = get($values, name);
+    let value;
     onMount(() => {
         initialValue= get($values, name);
+        value = initialValue;
         ready = true;
     })
-    function updateValues(val) {
-        values.update(old => set(old, name, val))
+
+    function updateValues(valueArg) {
+        values.update(old => set(old, name, valueArg))
+    }
+
+    function checkExternalValueChanges(values){
+        const currentVal = get(values, name)
+        if( currentVal !== value) {
+            value = currentVal;
+        }
+    }
+    $: {
+        checkExternalValueChanges($values);
     }
     $:{
-        if(typeof value !== 'undefined')updateValues(value)
+        updateValues(value);
     }
     $: {
         input = $form.inputs.find(input => input.name === name);

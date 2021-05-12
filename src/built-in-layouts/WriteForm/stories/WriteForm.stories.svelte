@@ -3,7 +3,6 @@
     import {writable} from 'svelte/store';
     import WriteForm from '../WriteForm.svelte';
     import { Meta, Story } from '@storybook/addon-svelte-csf';
-    import {onMount} from 'svelte';
 
     const form = writable({
         header: 'Test form header',
@@ -35,23 +34,13 @@
             },
         ]
     });
-    let values = writable({});
-
-    const object1 = {
-        name: null
-    };
+    let values = writable({object1: {name: 'Diego'}});
 
     setTimeout(() => {
         // reactivity of form
         form.update((older) => ({...older, header: 'hello'}));
-    }, 2000)
-
-    onMount(() => {
-        $values.object1 = object1;
-    })
-    $: {
-        console.log($values)
-    }
+        $values.object1 = {name: 'Franco'}
+    }, 5000);
 </script>
 <Meta title="WriteForm" />
 <Story name="Default">
