@@ -36,7 +36,9 @@
         checkExternalValueChanges($values);
     }
     $:{
-        updateValues(value);
+        if(typeof value !== 'undefined') {
+            updateValues(value);
+        }
     }
     $: {
         input = $form.inputs.find(input => input.name === name);
