@@ -24,7 +24,7 @@
         values.update(old => set(old, name, val))
     }
     $:{
-        updateValues(value)
+        if(typeof value !== 'undefined')updateValues(value)
     }
     $: {
         input = $form.inputs.find(input => input.name === name);
