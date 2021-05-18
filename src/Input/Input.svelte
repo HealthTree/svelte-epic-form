@@ -1,7 +1,7 @@
 <script>
     import {getContext, onMount, setContext} from 'svelte';
     import {shouldDisplayInput, typesMap} from "../EpicFormService";
-    import {get, set, isEqual} from 'lodash-es';
+    import {get, set, isEqual, cloneDeep} from 'lodash-es';
     export let name;
     export let mode = 'write';
     export let containerClass;
@@ -17,8 +17,8 @@
     let initialValue, ready = false;
     let value;
     onMount(() => {
-        initialValue= get($values, name);
-        value = initialValue;
+        value = get($values, name);
+        initialValue= cloneDeep(value);
         ready = true;
     })
 
@@ -46,7 +46,7 @@
     }
     $:shouldDisplay = shouldDisplayInput($form.inputs, input, $values, mode);
     $: {
-        if (ready && isEqual(initialValue, get($values, name))) {
+        if (ready && !isEqual(initialValue, get($values, name))) {
             $dirty[name] = true;
         }
     }
