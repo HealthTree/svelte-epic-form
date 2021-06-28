@@ -32,6 +32,13 @@
             value = currentVal;
         }
     }
+
+    function areValuesEqual(value1, value2){
+        if(typeof typesMap[input.type].isEqual === 'function') {
+            return typesMap[input.type].isEqual(value1, value1);
+        }
+        isEqual(value1, value2);
+    }
     $: {
         checkExternalValueChanges($values);
     }
@@ -46,7 +53,7 @@
     }
     $:shouldDisplay = shouldDisplayInput($form.inputs, input, $values, mode);
     $: {
-        if (ready && !isEqual(initialValue, get($values, name))) {
+        if (ready && !areValuesEqual(initialValue, get($values, name))) {
             $dirty[name] = true;
         }
     }
