@@ -24,7 +24,7 @@
     "@storybook/addon-svelte-csf": "^1.0.0",
     "@storybook/svelte": "^6.2.9",
     "babel-loader": "^8.2.2",
-    "rollup": "^2.0.0",
+    "rollup": "^2.80.0",
     "rollup-plugin-svelte": "^6.0.0",
     "svelte": "^3.38.2",
     "svelte-loader": "^3.1.1"
